@@ -4,6 +4,8 @@ import SignUp from "./Components/SignUp";
 import ForgotPassword from "./Components/ForgotPassword";
 import Home from "./Components/Home"; // Import the Home component
 import "./App.css";
+import GetHelp from "./Components/GetHelp";
+import HelpOthers from "./Components/HelpOthers";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/gethelp" element={<GetHelp />} />
+          <Route path="/helpothers" element={<HelpOthers />} />
         </Routes>
       </div>
     </Router>
