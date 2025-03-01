@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Login from "./Components/Login";
+import SignUp from "./Components/SignUp";
+import ForgotPassword from "./Components/ForgotPassword";
+import Home from "./Components/Home"; // Import the Home component
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="body">
+        {/* Navigation with a Home link */}
+        <nav>
+          <Link to="/">Home</Link> | {/* Link to the Home page */}
+          <Link to="/signup">Sign Up</Link> |<Link to="/login">Login</Link>
+        </nav>
+        {/* Routes */}
+        <Routes>
+          {/* Home Route */}
+          <Route path="/" element={<Home />} />{" "}
+          {/* Display the Home component */}
+          {/* Sign Up and Login Routes */}
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
