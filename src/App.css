@@ -29,3 +29,10 @@ nav a:hover {
   color: #0056b3;
   text-decoration: underline;
 }
+
+.help-page-text {
+  display: flex;
+  align-content: left;
+  justify-content: left;
+  font-size: 3vh;
+}
