@@ -30,6 +30,49 @@ nav a:hover {
   text-decoration: underline;
 }
 
+
+
+/* Container for centered content with a top margin */
+.centered-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* Input field style for form elements */
+.input-field {
+  padding: 10px;
+  width: 250px;
+  margin-bottom: 10px;
+  background-color: black;
+  color: white; /* Add color if needed */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Primary button style */
+.primary-button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+/* Link style for navigation and actions */
+.primary-link {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+/* Message text style */
+.message-success {
+  margin-top: 15px;
+  color: green;
+}
+
+
 .help-page-text {
   display: flex;
   align-content: left;
