@@ -1,53 +1,55 @@
+// SignUp.tsx
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
+import { sendSignInLinkToEmail } from "firebase/auth";
 
 const SignUp = () => {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Initialize the navigate function
+  const navigate = useNavigate();
 
-  const handleSignUp = () => {
-    if (!name || !username || !email || !password) {
-      alert("Please fill in all fields");
+  const handleSignUp = async () => {
+    if (!name || !username || !email) {
+      alert("Please fill in all required fields");
       return;
     }
 
-    // Store the user's credentials in localStorage
-    localStorage.setItem("name", name);
-    localStorage.setItem("username", username);
-    localStorage.setItem("email", email);
-    localStorage.setItem("password", password);
+    const actionCodeSettings = {
+      url: window.location.origin + "/login",
+      handleCodeInApp: true,
+    };
 
-    console.log("Account Created:", { name, username, email, password });
-    alert("Account successfully created!");
+    try {
+      await sendSignInLinkToEmail(auth, email, actionCodeSettings);
+      window.localStorage.setItem("emailForSignIn", email);
+      alert("Sign–in link sent! Check your email.");
 
-    // Clear the form
-    setName("");
-    setUsername("");
-    setEmail("");
-    setPassword("");
-    // Navigate to the login page after successful signup
-    navigate("/login");
+      // Optionally store additional info elsewhere (e.g., Firestore)
+
+      // Clear form fields
+      setName("");
+      setUsername("");
+      setEmail("");
+
+      navigate("/login");
+    } catch (error: any) {
+      console.error("Error sending sign–in link:", error);
+      alert("Error sending sign–in link: " + error.message);
+    }
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
+    <div className="centered-container">
       <h1>Sign Up</h1>
-      <div style={{ marginBottom: "15px" }}>
+      <div className="form-group">
         <input
           type="text"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          style={{
-            padding: "10px",
-            width: "250px",
-            marginBottom: "10px",
-            backgroundColor: "black",
-          }}
+          className="input-field"
         />
         <br />
         <input
@@ -55,12 +57,7 @@ const SignUp = () => {
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          style={{
-            padding: "10px",
-            width: "250px",
-            marginBottom: "10px",
-            backgroundColor: "black",
-          }}
+          className="input-field"
         />
         <br />
         <input
@@ -68,39 +65,15 @@ const SignUp = () => {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          style={{
-            padding: "10px",
-            width: "250px",
-            marginBottom: "10px",
-            backgroundColor: "black",
-          }}
-        />
-        <br />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={{ padding: "10px", width: "250px", backgroundColor: "black" }}
+          className="input-field"
         />
       </div>
-      <button
-        onClick={handleSignUp}
-        style={{
-          padding: "10px 20px",
-          backgroundColor: "#007BFF",
-          color: "white",
-          border: "none",
-          cursor: "pointer",
-          borderRadius: "5px",
-          marginBottom: "15px",
-        }}
-      >
+      <button onClick={handleSignUp} className="primary-button">
         Create Account
       </button>
       <p style={{ marginTop: "20px" }}>
         Already have an account?{" "}
-        <Link to="/login" style={{ color: "#007BFF", textDecoration: "none" }}>
+        <Link to="/login" className="primary-link">
           Sign In
         </Link>
       </p>
@@ -109,3 +82,4 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
