@@ -1,93 +1,74 @@
-import React, { useState } from "react";
+// Login.tsx
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
+import { isSignInWithEmailLink, signInWithEmailLink, sendSignInLinkToEmail } from "firebase/auth";
 
 const Login = () => {
-  const [emailOrUsername, setEmailOrUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    if (!emailOrUsername || !password) {
-      alert("Please fill in all fields");
+  useEffect(() => {
+    if (isSignInWithEmailLink(auth, window.location.href)) {
+      let storedEmail = window.localStorage.getItem("emailForSignIn");
+      if (!storedEmail) {
+        storedEmail = window.prompt("Please provide your email for confirmation") || "";
+      }
+      if (storedEmail) {
+        signInWithEmailLink(auth, storedEmail, window.location.href)
+          .then((result) => {
+            window.localStorage.removeItem("emailForSignIn");
+            alert("Login successful!");
+            navigate("/startgame");
+          })
+          .catch((error) => {
+            console.error("Error during sign–in:", error);
+            alert("Error during sign–in: " + error.message);
+          });
+      }
+    }
+  }, [navigate]);
+
+  const handleSendLink = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!email) {
+      alert("Please enter your email");
       return;
     }
-
-    const isEmail = /\S+@\S+\.\S+/.test(emailOrUsername);
-    const storedUser = localStorage.getItem(isEmail ? "email" : "username");
-
-    if (storedUser && storedUser === emailOrUsername) {
-      const storedPassword = localStorage.getItem("password");
-      if (storedPassword === password) {
-        console.log("Login Successful:", {
-          loginType: isEmail ? "Email" : "Username",
-          value: emailOrUsername,
-          password,
-        });
-        alert(
-          `Login successful using ${
-            isEmail ? "Email" : "Username"
-          }: ${emailOrUsername}`
-        );
-        setEmailOrUsername("");
-        setPassword("");
-        navigate("/startgame");
-      } else {
-        alert("Incorrect password, please try again.");
-      }
-    } else {
-      alert("No account found. Please sign up first.");
+    const actionCodeSettings = {
+      url: window.location.origin + "/login",
+      handleCodeInApp: true,
+    };
+    try {
+      await sendSignInLinkToEmail(auth, email, actionCodeSettings);
+      window.localStorage.setItem("emailForSignIn", email);
+      alert("Sign–in link sent! Check your email.");
+    } catch (error: any) {
+      console.error("Error sending sign–in link:", error);
+      alert("Error sending sign–in link: " + error.message);
     }
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
+    <div className="centered-container">
       <h1>Login</h1>
-      <div style={{ marginBottom: "15px" }}>
-        <input
-          type="text"
-          placeholder="Email or Username"
-          value={emailOrUsername}
-          onChange={(e) => setEmailOrUsername(e.target.value)}
-          style={{
-            padding: "10px",
-            width: "250px",
-            marginBottom: "10px",
-            backgroundColor: "black",
-          }}
-        />
-        <br />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={{ padding: "10px", width: "250px", backgroundColor: "black" }}
-        />
-      </div>
-      <button
-        onClick={handleLogin}
-        style={{
-          padding: "10px 20px",
-          backgroundColor: "#007BFF",
-          color: "white",
-          border: "none",
-          cursor: "pointer",
-          borderRadius: "5px",
-        }}
-      >
-        Sign In
-      </button>
-      <p style={{ marginTop: "15px" }}>
-        <Link
-          to="/forgot-password"
-          style={{ color: "#007BFF", textDecoration: "none" }}
-        >
-          Forgot Password?
-        </Link>
-      </p>
+      <form onSubmit={handleSendLink}>
+        <div className="form-group">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="input-field"
+          />
+        </div>
+        <button type="submit" className="primary-button">
+          Send Sign–in Link
+        </button>
+      </form>
       <p style={{ marginTop: "15px" }}>
         Don't have an account?{" "}
-        <Link to="/signup" style={{ color: "#007BFF", textDecoration: "none" }}>
+        <Link to="/signup" className="primary-link">
           Sign Up
         </Link>
       </p>
@@ -96,3 +77,4 @@ const Login = () => {
 };
 
 export default Login;
+
