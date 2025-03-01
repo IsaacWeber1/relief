@@ -1,3 +1,8 @@
+import React, { useEffect, useState } from 'react';
+import logo from './logo.svg';
+import './App.css';
+import { auth } from "./firebase";
+import { onAuthStateChanged } from "firebase/auth";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
@@ -8,6 +13,22 @@ import GetHelp from "./Components/GetHelp";
 import HelpOthers from "./Components/HelpOthers";
 
 function App() {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
+
+  useEffect(() => {
+    // Listen for auth state changes
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+      setAuthLoading(false);
+    });
+    return () => unsubscribe(); // Cleanup the listener on unmount
+  }, []);
+
+  if (authLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Router>
       <div className="body">
