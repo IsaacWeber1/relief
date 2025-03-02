@@ -172,7 +172,7 @@ function HelpOthers() {
           />
         </Form.Group>
 
-        <Button variant="primary" onClick={handleSubmit} style={{ marginTop: "20px" }}>
+        <Button variant="primary" onClick={handleSubmit} style={{ marginTop: "20px", background: '#00383a', border: 0}} >
           Submit
         </Button>
       </div>

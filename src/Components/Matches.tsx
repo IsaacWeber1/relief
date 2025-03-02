@@ -30,8 +30,9 @@ const MatchCard: React.FC<{ match: GetHelpData }> = ({ match }) => {
   };
 
   return (
+    <div className="transparent-box">
     <Card style={{ marginBottom: "1rem" }}>
-      <Card.Body>
+      <Card.Body style={{textShadow: "none"}}>
         <Card.Title>{match.fullname}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
           Location: {match.location}
@@ -43,7 +44,7 @@ const MatchCard: React.FC<{ match: GetHelpData }> = ({ match }) => {
           <strong>My Story:</strong> {match.story}
         </Card.Text>
         {!showMessageForm ? (
-          <Button onClick={() => setShowMessageForm(true)}  style={{background: '#00383a'}}>
+          <Button onClick={() => setShowMessageForm(true)}  style={{background: '#00383a', border: 0}}>
             Send Message
           </Button>
         ) : (
@@ -58,7 +59,7 @@ const MatchCard: React.FC<{ match: GetHelpData }> = ({ match }) => {
             <Button
               variant="primary"
               onClick={handleSend}
-              style={{ marginTop: "10px" }}
+              style={{ marginTop: "10px",background: '#00383a', border: 0}}
             >
               Send
             </Button>
@@ -66,6 +67,7 @@ const MatchCard: React.FC<{ match: GetHelpData }> = ({ match }) => {
         )}
       </Card.Body>
     </Card>
+    </div>
   );
 };
 
