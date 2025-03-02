@@ -58,11 +58,16 @@ function generateRandomEmail(fullname: string) {
 
 function generateRandomStory() {
   const stories = [
-    "Lost my job and need temporary assistance with food",
-    "Single parent looking for child care support",
-    "Need transportation to a medical appointment",
-    "Struggling with housing and need a safe place to stay",
-    "Recently relocated and need clothes and basic supplies",
+    "After a hurricane devastated my town, I lost my home and all my belongings. I'm in urgent need of temporary shelter and food assistance.",
+    "Wildfires destroyed my neighborhood, and I had to evacuate with only a few belongings. I need clothes, food, and a safe place to stay while I rebuild.",
+    "Following severe flooding, my apartment became unlivable due to water damage and mold. I am seeking shelter and basic necessities.",
+    "A recent earthquake left my home structurally unsafe, forcing me to relocate. I need temporary housing and assistance with transportation.",
+    "My family was displaced after a tornado leveled our house. We need child care support while we get back on our feet.",
+    "A winter storm left me stranded without power or heat for weeks. Now, I am seeking food, warm clothing, and shelter.",
+    "My community was hit by a major hurricane, and I lost my job due to business closures. I need food and temporary financial assistance.",
+    "Due to a massive landslide, my home was buried under debris, and I am now staying in a temporary shelter. I need transportation and basic supplies.",
+    "A recent gas explosion in my apartment complex forced me to evacuate, and I am left without housing or essential items.",
+    "My town was hit by a severe drought, which impacted local businesses and my ability to make a living. I need support for food and basic necessities.",
   ];
   return stories[Math.floor(Math.random() * stories.length)];
 }
