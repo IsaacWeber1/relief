@@ -6,6 +6,7 @@ import Home from "./Components/Home"; // Import the Home component
 import "./App.css";
 import GetHelp from "./Components/GetHelp";
 import HelpOthers from "./Components/HelpOthers";
+import Matches from "./Components/Matches";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/gethelp" element={<GetHelp />} />
           <Route path="/helpothers" element={<HelpOthers />} />
+          <Route path="/matches" element={<Matches />} />
         </Routes>
       </div>
     </Router>

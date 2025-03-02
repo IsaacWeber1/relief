@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "./Home.css";
+import { createTestData } from "../testDataGenerator";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -56,6 +57,14 @@ const Home = () => {
             </Col>
           </Row>
         </Container>
+
+        <Button
+              onClick={() => {
+                createTestData();
+                alert("Test data created!");
+              }}
+       >Generate Test Data</Button>
+
       </div>
     </div>
   );
