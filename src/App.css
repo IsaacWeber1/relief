@@ -79,3 +79,14 @@ nav a:hover {
   justify-content: left;
   font-size: 3vh;
 }
+
+.needs {
+  display: flex;
+  align-content: left;
+  font-size: 2.2vh;
+  gap: 2vw;
+}
+
+.forms {
+  margin-bottom: 5vh;
+}
