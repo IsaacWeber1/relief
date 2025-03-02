@@ -28,12 +28,12 @@ nav {
 nav a {
   text-decoration: none;
   margin-left: 15px;
-  color: #007bff;
+  color: #ffffff;
   font-weight: bold;
 }
 
 nav a:hover {
-  color: #0056b3;
+  color: #ffffff;
   text-decoration: underline;
 }
 
@@ -47,11 +47,13 @@ nav a:hover {
   font-weight: bold;
   margin-bottom: 0.5rem;
   margin-top: 50px;
+  color: #fcfdff;
 }
 
 .home-subtitle {
   font-size: 1.2rem;
   margin-bottom: 2rem;
+  color: #ffffff;
 }
 
 .button-row {
@@ -59,12 +61,8 @@ nav a:hover {
 }
 
 .Button-container {
-  background-color: rgba(
-    102,
-    148,
-    31,
-    0.829
-  ); /* Slight transparency for readability */
+  background: rgba(19, 169, 177, 0.2); /* Adjust transparency */
+
   padding: 2rem;
   border-radius: 10px;
   margin-bottom: 2rem;
@@ -84,10 +82,22 @@ nav a:hover {
   padding: 0.8rem 2rem;
   font-size: 1.2rem;
   font-weight: bold;
-  background-color: #0056b3;
+  background-color: #ffffff;
   border: none;
 }
 
 .custom-button:hover {
-  background-color: #004095;
+  background-color: #fcfdff;
+}
+.Button-title {
+  color: #ffffff;
+}
+.Button-description {
+  color: #ffffff;
+}
+.button {
+  color: white;
+}
+.motivational-quote {
+  color: #ffffff;
 }
