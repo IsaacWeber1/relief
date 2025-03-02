@@ -2,7 +2,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
-import { isSignInWithEmailLink, signInWithEmailLink, sendSignInLinkToEmail } from "firebase/auth";
+import {
+  isSignInWithEmailLink,
+  signInWithEmailLink,
+  sendSignInLinkToEmail,
+} from "firebase/auth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,7 +16,8 @@ const Login = () => {
     if (isSignInWithEmailLink(auth, window.location.href)) {
       let storedEmail = window.localStorage.getItem("emailForSignIn");
       if (!storedEmail) {
-        storedEmail = window.prompt("Please provide your email for confirmation") || "";
+        storedEmail =
+          window.prompt("Please provide your email for confirmation") || "";
       }
       if (storedEmail) {
         signInWithEmailLink(auth, storedEmail, window.location.href)
@@ -77,4 +82,3 @@ const Login = () => {
 };
 
 export default Login;
-

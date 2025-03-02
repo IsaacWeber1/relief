@@ -89,3 +89,19 @@ nav a:hover {
   margin-bottom: 5vh;
   color: whitesmoke;
 }
+
+.get-help-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.transparent-box {
+  background: rgba(19, 169, 177, 0.2); /* Adjust transparency */
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  margin-left: 110px;
+}
