@@ -12,9 +12,9 @@ function App() {
     <Router>
       <div>
         {/* Navigation with a Home link */}
-        <nav>
-          <Link to="/">Home</Link> | {/* Link to the Home page */}
-          <Link to="/signup">Sign Up</Link> |<Link to="/login">Login</Link>
+        <nav >
+          <Link className="nav-buttons" to="/">Home</Link> | {/* Link to the Home page */}
+          <Link className="nav-buttons" to="/signup"> Sign Up  </Link> | <Link className="nav-buttons" to="/login"> Login</Link>
         </nav>
         {/* Routes */}
         <Routes>
