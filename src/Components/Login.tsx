@@ -50,28 +50,30 @@ const Login = () => {
   };
 
   return (
-    <div className="centered-container">
-      <h1>Login</h1>
-      <form onSubmit={handleSendLink}>
-        <div className="form-group">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="input-field"
-          />
-        </div>
-        <button type="submit" className="primary-button">
-          Send Sign–in Link
-        </button>
-      </form>
-      <p style={{ marginTop: "15px" }}>
-        Don't have an account?{" "}
-        <Link to="/signup" className="primary-link">
-          Sign Up
-        </Link>
-      </p>
+    <div style={{display: "flex", justifyContent: "center"}}>
+      <div className="centered-container">
+        <h1>Login</h1>
+        <form onSubmit={handleSendLink}>
+          <div className="form-group">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="input-field"
+            />
+          </div>
+          <button type="submit" className="primary-button">
+            Send Sign–in Link
+          </button>
+        </form>
+        <p style={{ marginTop: "15px" }}>
+          Don't have an account?{" "}
+          <Link to="/signup" className="primary-link">
+            Sign Up
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };
