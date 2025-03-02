@@ -56,6 +56,12 @@ const Home = () => {
             </Col>
           </Row>
         </Container>
+        <Button
+        onClick={() => {
+          createTestData();
+          alert("Test data created!");
+        }}
+        >Generate Test Data</Button>
       </div>
     </div>
   );
