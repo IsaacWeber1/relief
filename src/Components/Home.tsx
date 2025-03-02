@@ -1,5 +1,4 @@
 import React from "react";
-// src/components/Home.tsx
 import { useNavigate } from "react-router-dom";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "./Home.css";
@@ -58,28 +57,15 @@ const Home = () => {
             </Col>
           </Row>
         </Container>
+
+        <Button
+              onClick={() => {
+                createTestData();
+                alert("Test data created!");
+              }}
+       >Generate Test Data</Button>
+
       </div>
-    <div>
-      <h1>Welcome to the Simulated Blood Drawing Routine Training Program</h1>
-      <p>
-        This program helps train nurses on blood drawing routines. Use the
-        navigation above to sign up or log in to get started.
-      </p>
-      <Button
-        onClick={() => {
-          createTestData();
-          alert("Test data created!");
-        }}
-        >Generate Test Data</Button>
-      <Button
-        onClick={() => {
-          navigate("/GetHelp");
-        }}
-      >
-        Gethelp
-      </Button>
-      <Button onClick={() => navigate("/HelpOthers")}>HelpOthers</Button>
-    </div>
     </div>
   );
 };

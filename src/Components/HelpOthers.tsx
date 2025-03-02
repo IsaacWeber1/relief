@@ -69,7 +69,7 @@ function HelpOthers() {
   }
 
   return (
-    <div>
+    <div className="transparent-box">
       <h1 style={{ marginBottom: "4vh" }}>Help Others</h1>
       <div>
         <Form.Group className="forms" controlId="formFullName">

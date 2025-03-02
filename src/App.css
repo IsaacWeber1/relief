@@ -34,6 +34,11 @@ nav a:hover {
 .centered-container {
   text-align: center;
   margin-top: 50px;
+  /* background-color: #007bff; */
+  /* width: 30vw;
+  height: 50vh; */
+  padding: 2%;
+
 }
 
 /* Input field style for form elements */
@@ -41,8 +46,8 @@ nav a:hover {
   padding: 10px;
   width: 250px;
   margin-bottom: 10px;
-  background-color: black;
-  color: white; /* Add color if needed */
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0); /* Add color if needed */
   border: 1px solid #ccc;
   border-radius: 4px;
 }
@@ -88,4 +93,20 @@ nav a:hover {
 .forms {
   margin-bottom: 5vh;
   color: whitesmoke;
+}
+
+.get-help-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.transparent-box {
+  background: rgba(19, 169, 177, 0.2); /* Adjust transparency */
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  margin-left: 110px;
 }
