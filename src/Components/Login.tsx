@@ -68,7 +68,7 @@ const Login = () => {
               className="input-field"
             />
           </div>
-          <button type="submit" className="primary-button">
+          <button type="submit" className="primary-button"  style={{background: '#00383a'}}>
             Send Sign–in Link
           </button>
         </form>
