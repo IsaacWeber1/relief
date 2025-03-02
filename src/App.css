@@ -4,3 +4,88 @@
   padding: 2rem;
   text-align: center;
 }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #7ea85a; /* Shiny dark blue */
+  color: white; /* Ensure text is readable */
+  text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.6);
+}
+nav {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  margin-left: 15px;
+  color: #007bff;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Container for centered content with a top margin */
+.centered-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* Input field style for form elements */
+.input-field {
+  padding: 10px;
+  width: 250px;
+  margin-bottom: 10px;
+  background-color: black;
+  color: white; /* Add color if needed */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Primary button style */
+.primary-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+/* Link style for navigation and actions */
+.primary-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* Message text style */
+.message-success {
+  margin-top: 15px;
+  color: green;
+}
+
+.help-page-text {
+  display: flex;
+  align-content: left;
+  justify-content: left;
+  font-size: 3vh;
+  color: white;
+}
+
+.needs {
+  display: flex;
+  align-content: left;
+  font-size: 2.2vh;
+  gap: 2vw;
+}
+
+.forms {
+  margin-bottom: 5vh;
+  color: whitesmoke;
+}
