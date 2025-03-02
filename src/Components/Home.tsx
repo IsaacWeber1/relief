@@ -15,10 +15,10 @@ const Home = () => {
           Connect with those in need or offer assistance in times of crisis.
         </p>
         {/* Motivational Quote */}
-        <blockquote className="motivational-quote">
+        {/* <blockquote className="motivational-quote">
           "Helping one person might not change the world, but it could change
           the world for one person."
-        </blockquote>
+        </blockquote> */}
 
         <Container>
           <Row className="button-row">
@@ -30,7 +30,7 @@ const Home = () => {
                   nearby volunteers and resources.
                 </p>
                 <Button
-                  className="custom-button"
+                  style={{backgroundColor: "#00383a", border: 0, fontSize: "1.3rem"}} className="custom-button"
                   size="lg"
                   onClick={() => navigate("/GetHelp")}
                 >
@@ -47,6 +47,7 @@ const Home = () => {
                   can.
                 </p>
                 <Button
+                  style={{backgroundColor: "#00383a", border: 0, fontSize: "1.3rem"}}
                   className="custom-button"
                   size="lg"
                   onClick={() => navigate("/HelpOthers")}

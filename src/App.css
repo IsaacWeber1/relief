@@ -110,3 +110,10 @@ nav a:hover {
   width: 80%;
   margin-left: 110px;
 }
+
+.nav-buttons {
+  color: #00383a;
+  font-size: 1.4rem;
+  text-shadow: 2px 4px 6px rgba(0, 0, 0, 0);
+
+}

@@ -42,7 +42,7 @@ const SignUp = () => {
 
   return (
     <div className="centered-container">
-      <h1>Sign Up</h1>
+      <h1 style={{color: "#00383a"}} >Sign Up</h1>
       <div className="form-group">
         <input
           type="text"
@@ -68,7 +68,7 @@ const SignUp = () => {
           className="input-field"
         />
       </div>
-      <button onClick={handleSignUp} className="primary-button">
+      <button style={{backgroundColor: "#00383a"}}onClick={handleSignUp} className="primary-button">
         Create Account
       </button>
       <p style={{ marginTop: "20px" }}>
