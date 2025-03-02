@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
-const saveKeyData = "MYKEY";
-const prevKey = localStorage.getItem(saveKeyData);
-const keyData = prevKey ? JSON.parse(prevKey) : "";
 
 function GetHelp() {
   const [fullname, setFullName] = useState<string>('');
   const [needs, setNeeds] = useState<string[]>([]);
+  const [location, setLocation] = useState<string>('');
+  const [number, setNumber] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [story, setStory] = useState<string>('');
 
   function updateFullName(event: React.ChangeEvent<HTMLInputElement>) {
     setFullName(event.target.value)
+  }function updateLocation(event: React.ChangeEvent<HTMLInputElement>) {
+    setLocation(event.target.value)
+  }function updateNumber(event: React.ChangeEvent<HTMLInputElement>) {
+    setNumber(event.target.value)
+  }function updateEmail(event: React.ChangeEvent<HTMLInputElement>) {
+    setEmail(event.target.value)
+  }
+  function updateStory(event: React.ChangeEvent<HTMLInputElement>) {
+    setStory(event.target.value)
   }
 
   function updateNeeds(event: React.ChangeEvent<HTMLInputElement>) {
@@ -27,9 +37,9 @@ function GetHelp() {
 
   return (
     <div>
-      <h1>Get Help</h1>
+      <h1 style={{marginBottom: "4vh"}}>Get Help</h1>
       <div>
-        <Form.Group controlId="formMovieName">
+        <Form.Group className="forms" controlId="formMovieName">
         <Form.Label className="help-page-text">
           Full Name
         </Form.Label>
@@ -39,39 +49,39 @@ function GetHelp() {
           style = {{display: "flex", alignContent: "left", justifyContent: "left"}}/>
         </Form.Group>
         
-        <Form.Group controlId="formLocation">
+        <Form.Group className="forms" controlId="formLocation">
         <Form.Label style = {{display: "flex", alignContent: "left", justifyContent: "left", fontSize: "3vh"}}>
           Location
         </Form.Label>
         <Form.Control
-          value={fullname}
-          onChange={updateFullName} 
+          value={location}
+          onChange={updateLocation} 
           style = {{display: "flex", alignContent: "left", justifyContent: "left"}}/>
         </Form.Group>
         
-        <Form.Group controlId="formPhoneNumber">
+        <Form.Group className="forms" controlId="formPhoneNumber">
         <Form.Label style = {{display: "flex", alignContent: "left", justifyContent: "left", fontSize: "3vh"}}>
           Phone Number
         </Form.Label>
         <Form.Control
-          value={fullname}
-          onChange={updateFullName} 
+          value={number}
+          onChange={updateNumber} 
           style = {{display: "flex", alignContent: "left", justifyContent: "left"}}/>
         </Form.Group>
         
-        <Form.Group controlId="formEmail">
+        <Form.Group className="forms" controlId="formEmail">
         <Form.Label style = {{display: "flex", alignContent: "left", justifyContent: "left", fontSize: "3vh"}}>
           Email
         </Form.Label>
         <Form.Control
-          value={fullname}
-          onChange={updateFullName} 
+          value={email}
+          onChange={updateEmail} 
           style = {{display: "flex", alignContent: "left", justifyContent: "left"}}/>
         </Form.Group>
 
         <span className="help-page-text">What do you need?</span>
-        <Form.Group controlId="formNeeds">
-        <Form.Check
+        <Form.Group className="forms" controlId="formNeeds">
+        <Form.Check style = {{display: "flex", alignContent: "left", gap: "1vw", fontSize: "2.2vh"}}
                 type="checkbox"
                 id="needs-check-food"
                 label="Food"
@@ -80,7 +90,7 @@ function GetHelp() {
                 checked={needs.includes("food")}
                 onChange={updateNeeds}
             />
-            <Form.Check
+            <Form.Check style = {{display: "flex", alignContent: "left", gap: "1vw", fontSize: "2.2vh"}}
                 type="checkbox"
                 id="needs-check-shelter"
                 label="Shelter / Housing"
@@ -89,25 +99,45 @@ function GetHelp() {
                 checked={needs.includes("shelter")}
                 onChange={updateNeeds}
             />
-            <Form.Check
+            <Form.Check style = {{display: "flex", alignContent: "left", gap: "1vw", fontSize: "2.2vh"}}
                 type="checkbox"
-                id="emotion-check-angry"
-                label="Angry"
-                name="emotions"
-                value="angry"
-                checked={needs.includes("angry")}
+                id="needs-check-transportation"
+                label="Transportation"
+                name="needs"
+                value="transportation"
+                checked={needs.includes("transportation")}
                 onChange={updateNeeds}
             />
+            <Form.Check style = {{display: "flex", alignContent: "left", gap: "1vw", fontSize: "2.2vh"}}
+                type="checkbox"
+                id="needs-check-child-care"
+                label="Child Care"
+                name="needs"
+                value="child care"
+                checked={needs.includes("child care")}
+                onChange={updateNeeds}
+            />
+            <Form.Check style = {{display: "flex", alignContent: "left", gap: "1vw", fontSize: "2.2vh"}}
+                type="checkbox"
+                id="needs-check-clothes"
+                label="Clothes"
+                name="needs"
+                value="clothes"
+                checked={needs.includes("clothes")}
+                onChange={updateNeeds}
+            />
+
         </Form.Group>
-        <Form.Group controlId="formYourStory">
+        
+        <Form.Group controlId="formMovieName">
         <Form.Label style = {{display: "flex", alignContent: "left", justifyContent: "left", fontSize: "3vh"}}>
-          Your Story
-        </Form.Label>
+        Your Story</Form.Label>
         <Form.Control
-          value={fullname}
-          onChange={updateFullName} 
-          style = {{display: "flex", alignContent: "left", justifyContent: "left"}}/>
-        </Form.Group>
+          as="textarea"
+          rows={3}
+          value={story}
+          onChange={updateStory} />
+      </Form.Group>
       </div>
     </div>
   );
