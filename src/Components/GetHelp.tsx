@@ -1,13 +1,23 @@
+// GetHelp.tsx
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
+interface GetHelpData {
+  fullname: string;
+  needs: string[];
+  location: string;
+  number: string;
+  email: string;
+  story: string;
+}
+
 function GetHelp() {
-  const [fullname, setFullName] = useState<string>("");
+  const [fullname, setFullName] = useState<string>('');
   const [needs, setNeeds] = useState<string[]>([]);
-  const [location, setLocation] = useState<string>("");
-  const [number, setNumber] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [story, setStory] = useState<string>("");
+  const [location, setLocation] = useState<string>('');
+  const [number, setNumber] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [story, setStory] = useState<string>('');
 
   function updateFullName(event: React.ChangeEvent<HTMLInputElement>) {
     setFullName(event.target.value);
@@ -24,111 +34,95 @@ function GetHelp() {
   function updateStory(event: React.ChangeEvent<HTMLInputElement>) {
     setStory(event.target.value);
   }
-
   function updateNeeds(event: React.ChangeEvent<HTMLInputElement>) {
     const need = event.target.value;
-    // Check if the emotion is already present
+    // Toggle need in the array
     if (needs.includes(need)) {
-      // Remove the given value
       setNeeds(needs.filter((e) => e !== need));
     } else {
-      // Append the given value
       setNeeds([...needs, need]);
     }
+  }
+
+  // Submit handler to process and store the data
+  function handleSubmit() {
+    const data: GetHelpData = {
+      fullname,
+      needs,
+      location,
+      number,
+      email,
+      story,
+    };
+
+    // Retrieve existing submissions or start a new array
+    const existing = localStorage.getItem('getHelpSubmissions');
+    const submissions: GetHelpData[] = existing ? JSON.parse(existing) : [];
+
+    // Add new submission
+    submissions.push(data);
+    localStorage.setItem('getHelpSubmissions', JSON.stringify(submissions));
+    alert("GetHelp submission saved locally!");
+
+    // Clear the form
+    setFullName("");
+    setNeeds([]);
+    setLocation("");
+    setNumber("");
+    setEmail("");
+    setStory("");
   }
 
   return (
     <div className="transparent-box">
       <h1 style={{ marginBottom: "4vh" }}>Get Help</h1>
       <div>
-        <Form.Group className="forms" controlId="formMovieName">
+        <Form.Group className="forms" controlId="formFullName">
           <Form.Label className="help-page-text">Full Name</Form.Label>
           <Form.Control
             value={fullname}
             onChange={updateFullName}
-            style={{
-              display: "flex",
-              alignContent: "left",
-              justifyContent: "left",
-            }}
+            style={{ display: "flex", alignContent: "left", justifyContent: "left" }}
           />
         </Form.Group>
 
         <Form.Group className="forms" controlId="formLocation">
-          <Form.Label
-            style={{
-              display: "flex",
-              alignContent: "left",
-              justifyContent: "left",
-              fontSize: "3vh",
-            }}
-          >
+          <Form.Label style={{ display: "flex", alignContent: "left", justifyContent: "left", fontSize: "3vh" }}>
             Location
           </Form.Label>
           <Form.Control
             value={location}
             onChange={updateLocation}
-            style={{
-              display: "flex",
-              alignContent: "left",
-              justifyContent: "left",
-            }}
+            style={{ display: "flex", alignContent: "left", justifyContent: "left" }}
           />
         </Form.Group>
 
         <Form.Group className="forms" controlId="formPhoneNumber">
-          <Form.Label
-            style={{
-              display: "flex",
-              alignContent: "left",
-              justifyContent: "left",
-              fontSize: "3vh",
-            }}
-          >
+          <Form.Label style={{ display: "flex", alignContent: "left", justifyContent: "left", fontSize: "3vh" }}>
             Phone Number
           </Form.Label>
           <Form.Control
             value={number}
             onChange={updateNumber}
-            style={{
-              display: "flex",
-              alignContent: "left",
-              justifyContent: "left",
-            }}
+            style={{ display: "flex", alignContent: "left", justifyContent: "left" }}
           />
         </Form.Group>
 
         <Form.Group className="forms" controlId="formEmail">
-          <Form.Label
-            style={{
-              display: "flex",
-              alignContent: "left",
-              justifyContent: "left",
-              fontSize: "3vh",
-            }}
-          >
+          <Form.Label style={{ display: "flex", alignContent: "left", justifyContent: "left", fontSize: "3vh" }}>
             Email
           </Form.Label>
           <Form.Control
             value={email}
             onChange={updateEmail}
-            style={{
-              display: "flex",
-              alignContent: "left",
-              justifyContent: "left",
-            }}
+            style={{ display: "flex", alignContent: "left", justifyContent: "left" }}
           />
         </Form.Group>
 
         <span className="help-page-text">What do you need?</span>
         <Form.Group className="forms" controlId="formNeeds">
           <Form.Check
-            style={{
-              display: "flex",
-              alignContent: "left",
-              gap: "1vw",
-              fontSize: "2.2vh",
-            }}
+            style={{ display: "flex", alignContent: "left", gap: "1vw", fontSize: "2.2vh" }}
             type="checkbox"
             id="needs-check-food"
             label="Food"
@@ -138,12 +132,7 @@ function GetHelp() {
             onChange={updateNeeds}
           />
           <Form.Check
-            style={{
-              display: "flex",
-              alignContent: "left",
-              gap: "1vw",
-              fontSize: "2.2vh",
-            }}
+            style={{ display: "flex", alignContent: "left", gap: "1vw", fontSize: "2.2vh" }}
             type="checkbox"
             id="needs-check-shelter"
             label="Shelter / Housing"
@@ -153,12 +142,7 @@ function GetHelp() {
             onChange={updateNeeds}
           />
           <Form.Check
-            style={{
-              display: "flex",
-              alignContent: "left",
-              gap: "1vw",
-              fontSize: "2.2vh",
-            }}
+            style={{ display: "flex", alignContent: "left", gap: "1vw", fontSize: "2.2vh" }}
             type="checkbox"
             id="needs-check-transportation"
             label="Transportation"
@@ -168,12 +152,7 @@ function GetHelp() {
             onChange={updateNeeds}
           />
           <Form.Check
-            style={{
-              display: "flex",
-              alignContent: "left",
-              gap: "1vw",
-              fontSize: "2.2vh",
-            }}
+            style={{ display: "flex", alignContent: "left", gap: "1vw", fontSize: "2.2vh" }}
             type="checkbox"
             id="needs-check-child-care"
             label="Child Care"
@@ -183,12 +162,7 @@ function GetHelp() {
             onChange={updateNeeds}
           />
           <Form.Check
-            style={{
-              display: "flex",
-              alignContent: "left",
-              gap: "1vw",
-              fontSize: "2.2vh",
-            }}
+            style={{ display: "flex", alignContent: "left", gap: "1vw", fontSize: "2.2vh" }}
             type="checkbox"
             id="needs-check-clothes"
             label="Clothes"
@@ -199,24 +173,16 @@ function GetHelp() {
           />
         </Form.Group>
 
-        <Form.Group controlId="formMovieName">
-          <Form.Label
-            style={{
-              display: "flex",
-              alignContent: "left",
-              justifyContent: "left",
-              fontSize: "3vh",
-            }}
-          >
+        <Form.Group controlId="formStory">
+          <Form.Label style={{ display: "flex", alignContent: "left", justifyContent: "left", fontSize: "3vh" }}>
             Your Story
           </Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={3}
-            value={story}
-            onChange={updateStory}
-          />
+          <Form.Control as="textarea" rows={3} value={story} onChange={updateStory} />
         </Form.Group>
+
+        <Button variant="primary" onClick={handleSubmit} style={{ marginTop: "20px" }}>
+          Submit
+        </Button>
       </div>
     </div>
   );
