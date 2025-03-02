@@ -30,8 +30,6 @@ nav a:hover {
   text-decoration: underline;
 }
 
-
-
 /* Container for centered content with a top margin */
 .centered-container {
   text-align: center;
@@ -52,7 +50,7 @@ nav a:hover {
 /* Primary button style */
 .primary-button {
   padding: 10px 20px;
-  background-color: #007BFF;
+  background-color: #007bff;
   color: white;
   border: none;
   cursor: pointer;
@@ -62,7 +60,7 @@ nav a:hover {
 
 /* Link style for navigation and actions */
 .primary-link {
-  color: #007BFF;
+  color: #007bff;
   text-decoration: none;
 }
 
@@ -72,12 +70,12 @@ nav a:hover {
   color: green;
 }
 
-
 .help-page-text {
   display: flex;
   align-content: left;
   justify-content: left;
   font-size: 3vh;
+  color: white;
 }
 
 .needs {
@@ -89,4 +87,5 @@ nav a:hover {
 
 .forms {
   margin-bottom: 5vh;
+  color: whitesmoke;
 }

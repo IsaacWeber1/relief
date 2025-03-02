@@ -11,7 +11,7 @@ import Matches from "./Components/Matches";
 function App() {
   return (
     <Router>
-      <div className="body">
+      <div>
         {/* Navigation with a Home link */}
         <nav>
           <Link to="/">Home</Link> | {/* Link to the Home page */}
