@@ -7,6 +7,7 @@ import "./App.css";
 import GetHelp from "./Components/GetHelp";
 import HelpOthers from "./Components/HelpOthers";
 import Matches from "./Components/Matches";
+import GetHelpSubmitted from "./Components/GetHelpSubmitted";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/gethelp" element={<GetHelp />} />
           <Route path="/helpothers" element={<HelpOthers />} />
           <Route path="/matches" element={<Matches />} />
+          <Route path="/gethelpsubmitted" element={<GetHelpSubmitted />} />
         </Routes>
       </div>
     </Router>

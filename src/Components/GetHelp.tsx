@@ -1,6 +1,8 @@
 // GetHelp.tsx
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+
 
 
 function GetHelp() {
@@ -36,7 +38,33 @@ function GetHelp() {
         // Append the given value
         setNeeds([...needs, need]);
     }
-}
+  }
+  const navigate = useNavigate();
+  function handleSubmit() {
+    // Create a new object to store the data
+    const data = {
+      fullname,
+      needs,
+      location,
+      number,
+      email,
+      story,
+    };
+
+    // Get the existing data from localStorage
+    const existing = localStorage.getItem("getHelpSubmissions");
+    const submissions = existing ? JSON.parse(existing) : [];
+
+    // Add the new data to the existing data
+    submissions.push(data);
+
+    // Store the updated data in localStorage
+    localStorage.setItem("getHelpSubmissions", JSON.stringify(submissions));
+
+    // Redirect the user to the submitted page
+    navigate("/GetHelpSubmitted");
+
+  }
 
   return (
     <div className="transparent-box">
@@ -141,6 +169,12 @@ function GetHelp() {
           value={story}
           onChange={updateStory} />
       </Form.Group>
+      <Button
+        style={{backgroundColor: "#00383a", border: 0, fontSize: "1.3rem"}}
+        className="custom-button"
+        size="lg"
+        onClick={handleSubmit}
+      >Submit</Button>
       </div>
     </div>
   );

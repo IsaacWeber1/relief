@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { createTestData } from "../testDataGenerator";
 
 interface HelpOthersData {
   fullname: string;
@@ -43,6 +44,7 @@ function HelpOthers() {
 
   // Submit handler to process and store the data
   function handleSubmit() {
+    createTestData();
     const data: HelpOthersData = {
       fullname,
       needs,

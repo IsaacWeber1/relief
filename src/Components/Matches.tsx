@@ -1,6 +1,5 @@
-// Matches.tsx
 import React, { useEffect, useState } from "react";
-import { Card, Container } from "react-bootstrap";
+import { Card, Container, Button, Form } from "react-bootstrap";
 
 interface GetHelpData {
   fullname: string;
@@ -19,43 +18,87 @@ interface HelpOthersData {
   email: string;
 }
 
+const MatchCard: React.FC<{ match: GetHelpData }> = ({ match }) => {
+  const [showMessageForm, setShowMessageForm] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleSend = () => {
+    // For demo purposes, simply alert the message.
+    alert(`Message sent to ${match.fullname}: ${message}`);
+    setMessage("");
+    setShowMessageForm(false);
+  };
+
+  return (
+    <Card style={{ marginBottom: "1rem" }}>
+      <Card.Body>
+        <Card.Title>{match.fullname}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">
+          Location: {match.location}
+        </Card.Subtitle>
+        <Card.Text>
+          <strong>Needs:</strong> {match.needs.join(", ")}
+        </Card.Text>
+        <Card.Text>
+          <strong>My Story:</strong> {match.story}
+        </Card.Text>
+        {!showMessageForm ? (
+          <Button onClick={() => setShowMessageForm(true)}>
+            Send Message
+          </Button>
+        ) : (
+          <div style={{ marginTop: "10px" }}>
+            <Form.Control
+              as="textarea"
+              rows={3}
+              placeholder="Type your message here..."
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            <Button
+              variant="primary"
+              onClick={handleSend}
+              style={{ marginTop: "10px" }}
+            >
+              Send
+            </Button>
+          </div>
+        )}
+      </Card.Body>
+    </Card>
+  );
+};
+
 const Matches = () => {
   const [matches, setMatches] = useState<GetHelpData[]>([]);
 
   useEffect(() => {
-    // 1) Get all "GetHelp" submissions from localStorage
+    // Retrieve all GetHelp submissions from localStorage
     const getHelpString = localStorage.getItem("getHelpSubmissions");
     const getHelpSubmissions: GetHelpData[] = getHelpString
       ? JSON.parse(getHelpString)
       : [];
 
-    // 2) Get the last "HelpOthers" submission from localStorage
+    // Retrieve all HelpOthers submissions from localStorage and pick the latest one
     const helpOthersString = localStorage.getItem("helpOthersSubmissions");
     const helpOthersSubmissions: HelpOthersData[] = helpOthersString
       ? JSON.parse(helpOthersString)
       : [];
-
-    // If we have at least one helpOthers submission, use the last one
     const currentHelper =
       helpOthersSubmissions[helpOthersSubmissions.length - 1];
 
     if (!currentHelper) {
-      // If there's no "Help Others" submission, no matches
       setMatches([]);
       return;
     }
 
-    // 3) Filter the "GetHelp" list by checking intersection of needs
-    // Example: user can help with "food" and "clothes"; the other user needs "food" or "shelter"
-    // We do a simple intersection check.
-    const matched = getHelpSubmissions.filter((helpItem) => {
-      const intersection = helpItem.needs.filter((n) =>
-        currentHelper.needs.includes(n)
-      );
-      return intersection.length > 0; // if there's any overlap, it's a match
+    // Filter GetHelp submissions that match the current helper's selected needs
+    const filteredMatches = getHelpSubmissions.filter((helpItem) => {
+      // Check if any need in the help submission is also in the helper's needs
+      return helpItem.needs.some((need) => currentHelper.needs.includes(need));
     });
 
-    setMatches(matched);
+    setMatches(filteredMatches);
   }, []);
 
   return (
@@ -64,25 +107,7 @@ const Matches = () => {
       {matches.length === 0 ? (
         <p>No matches found.</p>
       ) : (
-        matches.map((m, index) => (
-          <Card key={index} style={{ marginBottom: "1rem" }}>
-            <Card.Body>
-              <Card.Title>{m.fullname}</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Location: {m.location}
-              </Card.Subtitle>
-              <Card.Text>
-                <strong>Needs:</strong> {m.needs.join(", ")}
-              </Card.Text>
-              <Card.Text>
-                <strong>Situation:</strong> {m.story}
-              </Card.Text>
-              <Card.Text>
-                <strong>Contact:</strong> {m.email} | {m.number}
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        ))
+        matches.map((m, index) => <MatchCard key={index} match={m} />)
       )}
     </Container>
   );
