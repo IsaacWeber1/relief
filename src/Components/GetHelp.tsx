@@ -39,7 +39,7 @@ function GetHelp() {
 }
 
   return (
-    <div>
+    <div className="transparent-box">
       <h1 style={{marginBottom: "4vh"}}>Get Help</h1>
       <div>
         <Form.Group className="forms" controlId="formMovieName">
@@ -132,8 +132,8 @@ function GetHelp() {
 
         </Form.Group>
         
-        <Form.Group controlId="formMovieName">
-        <Form.Label style = {{display: "flex", alignContent: "left", justifyContent: "left", fontSize: "3vh"}}>
+        <Form.Group controlId="formMovieName" >
+        <Form.Label className="help-page-text" style = {{display: "flex", alignContent: "left", justifyContent: "left", fontSize: "3vh"}}>
         Your Story</Form.Label>
         <Form.Control
           as="textarea"
