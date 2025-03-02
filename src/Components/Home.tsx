@@ -1,9 +1,7 @@
 // src/components/Home.tsx
-import React from "react";
-import GetHelp from "./GetHelp";
 import { useNavigate } from "react-router-dom";
-import { Button, Col, Container, Row } from "react-bootstrap";
-import HelpOthers from "./HelpOthers";
+import { Button } from "react-bootstrap";
+import { createTestData } from "../testDataGenerator";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -14,6 +12,12 @@ const Home = () => {
         This program helps train nurses on blood drawing routines. Use the
         navigation above to sign up or log in to get started.
       </p>
+      <Button
+        onClick={() => {
+          createTestData();
+          alert("Test data created!");
+        }}
+        >Generate Test Data</Button>
       <Button
         onClick={() => {
           navigate("/GetHelp");
