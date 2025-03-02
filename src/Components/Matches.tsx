@@ -43,7 +43,7 @@ const MatchCard: React.FC<{ match: GetHelpData }> = ({ match }) => {
           <strong>My Story:</strong> {match.story}
         </Card.Text>
         {!showMessageForm ? (
-          <Button onClick={() => setShowMessageForm(true)}>
+          <Button onClick={() => setShowMessageForm(true)}  style={{background: '#00383a'}}>
             Send Message
           </Button>
         ) : (
